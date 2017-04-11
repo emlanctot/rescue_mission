@@ -10,28 +10,20 @@
   <strong>Description:</strong>
   <%= @question.description %>
 </p>
+<div class='actions'>
+  <%= link_to 'Edit', edit_question_path(@question) %>
+</div>
 
 <h3>Answers:</h3>
 <p>
-  <% @answers.each do |answer| %>
-    <tr>
-      <td><%= answer.description %></td>
-    </tr>
+  <% @question.answers.each do |answer| %>
+    <ul>
+      <li><%= answer.description %></li>
+    </ul>
   <% end %>
 
 </p>
 
-
 <h5>New Answer:</h5>
 
-<%= form_for(@answer) do |f| %>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= render :partial => 'answers/form' %>

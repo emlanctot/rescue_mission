@@ -15,17 +15,17 @@ class QuestionsController < ApplicationController
     # @answer = Answer.new
   end
 
-  def edit
-  end
-
   def create
     @question = Question.new(question_params)
-    @answer = Answer.new(answer_params)
     if @question.save
       redirect_to @question, notice: 'Question was successfully created.'
     else
       render :new
     end
+  end
+
+  def edit
+    @question = Question.find(params[:id])
   end
 
   def update
@@ -37,6 +37,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    @question.answers.destroy_all
     @question.destroy
     redirect_to questions_url, notice: 'Question was successfully destroyed.'
   end

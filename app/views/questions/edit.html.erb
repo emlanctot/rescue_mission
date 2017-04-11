@@ -1,0 +1,5 @@
+<h2>Edit your question</h2>
+
+<%= render 'form', question: @question %>
+<%= link_to 'Destroy', @question, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', questions_path %>
